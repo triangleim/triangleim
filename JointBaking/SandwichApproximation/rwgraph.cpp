@@ -10,114 +10,114 @@
 #include <random>
 #include <cmath>
 using namespace std;
-BloomFilter::BloomFilter()
-{
-}
-BloomFilter::BloomFilter(vector<uint> d)
-{
-        data = vector<uint>(d);
-}
-BloomFilter BloomFilter::operator|(const BloomFilter &b)
-{
-        BloomFilter result;
-        size_t s = getSize();
-        for (uint i = 0; i < s; i++)
-        {
-                result.add(data[i] | b[i]);
-        }
-        return result;
-}
-BloomFilter &BloomFilter::operator|=(const BloomFilter &b)
-{
-        size_t s = getSize();
-        for (uint i = 0; i < s; i++)
-        {
-                data[i] |= b[i];
-        }
-        return *this;
-}
-BloomFilter BloomFilter::operator&(const BloomFilter &b)
-{
-        BloomFilter result;
-        size_t s = getSize();
-        for (uint i = 0; i < s; i++)
-        {
-                result.add(data[i] & b[i]);
-        }
-        return result;
-}
-BloomFilter &BloomFilter::operator&=(const BloomFilter &b)
-{
-        size_t s = getSize();
-        for (uint i = 0; i < s; i++)
-        {
-                data[i] &= b[i];
-        }
-        return *this;
-}
-bool BloomFilter::operator==(const BloomFilter &b)
-{
-        size_t s = getSize();
-        for (uint i = 0; i < s; i++)
-        {
-                if (data[i] != b[i])
-                        return false;
-        }
-        return true;
-}
-bool BloomFilter::isZero()
-{
-        size_t s = getSize();
-        for (uint i = 0; i < s; i++)
-        {
-                if (data[i] != 0)
-                        return false;
-        }
-        return true;
-}
-void BloomFilter::setData(std::vector<uint> &d)
-{
-        data = vector<uint>(d);
-}
-void BloomFilter::genHash(std::vector<int> &d, std::vector<caluhash::HashFunction> &hs, size_t size, std::vector<int> &nodescc)
-{
-        data = vector<uint>(size, 0);
-        set<int> sccs;
-        for (auto i : d)
-                sccs.insert(nodescc[i]);
-        for (int i : sccs)
-        {
-                for (auto h : hs)
-                {
-                        uint hashv = h(i) % (size * 32);
-                        uint k = hashv / 32;
-                        uint r = hashv % 32;
-                        uint one = ((uint)1) << r;
-                        data[k] |= one;
-                }
-        }
-}
-void BloomFilter::add(uint i)
-{
-        data.push_back(i);
-}
-vector<uint> &BloomFilter::getData()
-{
-        return data;
-}
-size_t BloomFilter::getSize()
-{
-        return data.size();
-}
-const uint BloomFilter::operator[](int u) const
-{
-        return data[u];
-}
+// BloomFilter::BloomFilter()
+// {
+// }
+// BloomFilter::BloomFilter(vector<uint> d)
+// {
+//         data = vector<uint>(d);
+// }
+// BloomFilter BloomFilter::operator|(const BloomFilter &b)
+// {
+//         BloomFilter result;
+//         size_t s = getSize();
+//         for (uint i = 0; i < s; i++)
+//         {
+//                 result.add(data[i] | b[i]);
+//         }
+//         return result;
+// }
+// BloomFilter &BloomFilter::operator|=(const BloomFilter &b)
+// {
+//         size_t s = getSize();
+//         for (uint i = 0; i < s; i++)
+//         {
+//                 data[i] |= b[i];
+//         }
+//         return *this;
+// }
+// BloomFilter BloomFilter::operator&(const BloomFilter &b)
+// {
+//         BloomFilter result;
+//         size_t s = getSize();
+//         for (uint i = 0; i < s; i++)
+//         {
+//                 result.add(data[i] & b[i]);
+//         }
+//         return result;
+// }
+// BloomFilter &BloomFilter::operator&=(const BloomFilter &b)
+// {
+//         size_t s = getSize();
+//         for (uint i = 0; i < s; i++)
+//         {
+//                 data[i] &= b[i];
+//         }
+//         return *this;
+// }
+// bool BloomFilter::operator==(const BloomFilter &b)
+// {
+//         size_t s = getSize();
+//         for (uint i = 0; i < s; i++)
+//         {
+//                 if (data[i] != b[i])
+//                         return false;
+//         }
+//         return true;
+// }
+// bool BloomFilter::isZero()
+// {
+//         size_t s = getSize();
+//         for (uint i = 0; i < s; i++)
+//         {
+//                 if (data[i] != 0)
+//                         return false;
+//         }
+//         return true;
+// }
+// void BloomFilter::setData(std::vector<uint> &d)
+// {
+//         data = vector<uint>(d);
+// }
+// void BloomFilter::genHash(std::vector<int> &d, std::vector<caluhash::HashFunction> &hs, size_t size, std::vector<int> &nodescc)
+// {
+//         data = vector<uint>(size, 0);
+//         set<int> sccs;
+//         for (auto i : d)
+//                 sccs.insert(nodescc[i]);
+//         for (int i : sccs)
+//         {
+//                 for (auto h : hs)
+//                 {
+//                         uint hashv = h(i) % (size * 32);
+//                         uint k = hashv / 32;
+//                         uint r = hashv % 32;
+//                         uint one = ((uint)1) << r;
+//                         data[k] |= one;
+//                 }
+//         }
+// }
+// void BloomFilter::add(uint i)
+// {
+//         data.push_back(i);
+// }
+// vector<uint> &BloomFilter::getData()
+// {
+//         return data;
+// }
+// size_t BloomFilter::getSize()
+// {
+//         return data.size();
+// }
+// const uint BloomFilter::operator[](int u) const
+// {
+//         return data[u];
+// }
 
-const uint BloomFilter::operator[](int u)
-{
-        return data[u];
-}
+// const uint BloomFilter::operator[](int u)
+// {
+//         return data[u];
+// }
 const vector<int> &Graph::operator[](int u) const
 {
         return adjList[u];

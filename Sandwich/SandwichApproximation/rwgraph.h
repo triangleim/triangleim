@@ -1,8 +1,8 @@
 /*
  * @
  * @Date:
- * @LastEditors:  
- * @LastEditTime:
+ * @LastEditors: HU Zheng
+ * @LastEditTime: 2023-02-01 21:11:14
  * @Description: file content
  */
 #ifndef _RWGRAPH_H
@@ -16,30 +16,30 @@
 #include "sfmt/SFMT.h"
 #include "lib/segvcatch.h"
 #include <string>
-#include"hash.hpp"
+// #include"hash.hpp"
 typedef uint32_t UI;
 typedef uint64_t ULL;
-class BloomFilter
-{
-private:
-	std::vector<uint> data;
-public:
-	BloomFilter();
-	BloomFilter(std::vector<uint> d);
-	BloomFilter operator|(const BloomFilter& b);
-	BloomFilter& operator|=(const BloomFilter& b);
-	BloomFilter operator&(const BloomFilter& b);
-	BloomFilter& operator&=(const BloomFilter& b);
-	bool operator==(const BloomFilter& b);
-	bool isZero();
-	void setData(std::vector<uint>& d);
-	void genHash(std::vector<int>& d,std::vector<caluhash::HashFunction>& hs,size_t size,std::vector<int>& nodescc);
-	void add(uint i);
-	std::vector<uint>& getData();
-	size_t getSize();
-	const uint operator[](int u) const;
-	const uint operator[](int u) ;
-} ;
+// class BloomFilter
+// {
+// private:
+// 	std::vector<uint> data;
+// public:
+// 	BloomFilter();
+// 	BloomFilter(std::vector<uint> d);
+// 	BloomFilter operator|(const BloomFilter& b);
+// 	BloomFilter& operator|=(const BloomFilter& b);
+// 	BloomFilter operator&(const BloomFilter& b);
+// 	BloomFilter& operator&=(const BloomFilter& b);
+// 	bool operator==(const BloomFilter& b);
+// 	bool isZero();
+// 	void setData(std::vector<uint>& d);
+// 	void genHash(std::vector<int>& d,std::vector<caluhash::HashFunction>& hs,size_t size,std::vector<int>& nodescc);
+// 	void add(uint i);
+// 	std::vector<uint>& getData();
+// 	size_t getSize();
+// 	const uint operator[](int u) const;
+// 	const uint operator[](int u) ;
+// } ;
 // Graph class defines fundamental operators on graph
 class Graph
 {
@@ -66,8 +66,8 @@ private:
 	std::vector<int> node_deg_out;
 	std::vector<std::vector<UI>> weights;
 	std::vector<ULL> weight_sampling;
-	std::vector<BloomFilter> index;
-	std::vector<caluhash::HashFunction> hs;
+	// std::vector<BloomFilter> index;
+	// std::vector<caluhash::HashFunction> hs;
 public:
 		std::vector<uint> views;
 		std::vector<uint> lifetimes;
